@@ -278,6 +278,7 @@
   }
 }
 
+.centrado{ text-align: center;}
 
 
 
@@ -614,7 +615,7 @@ header {
 #wrapper_diputados .item a{ color: #999; }
 #wrapper_diputados .item a:hover{ color: #555; }
 
-#wrapper_diputados .item .foto{
+#wrapper_diputados .item .foto, #diputado .foto{
     width: 132px;
     height: 132px;
     background-color: #FFF;
@@ -628,17 +629,50 @@ header {
     box-shadow: 0px 0px 10px -3px #333;
     float: left;
     margin-right: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
-#wrapper_diputados .item .titulo{
+
+
+#wrapper_diputados .item .foto:hover{
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+      filter: alpha(opacity=50);
+      -moz-opacity: 0.5;
+      -khtml-opacity: 0.5;
+      opacity: 0.5;
+}
+
+#diputado .foto{
+    cursor: auto;
+    float: none;
+    margin: 10px auto 10px auto;
+}
+
+#wrapper_diputados .item .titulo, #diputado .titulo{
     color: rgb(100, 100, 100);
     font-weight: 300;
     font-style: italic;
     font-size: 18px;
     margin: 30px 0px 4px 0px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
-#wrapper_diputados .item .subtitulo{
+#wrapper_diputados .item .titulo:hover{
+    color: #000;
+}
+
+#diputado .titulo{ cursor: auto;}
+
+
+#wrapper_diputados .item .subtitulo, #diputado .subtitulo{
     color:#0099FF;
     font-weight: 400;
     font-style: italic;
@@ -647,6 +681,15 @@ header {
 }
 
 #wrapper_diputados .item .social{
+    color:#999;
+    font-weight: 400;
+    line-height: 16px;
+    font-size: 12px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px;
+}
+
+#wrapper_diputados .item .social, #diputado .social{
     color:#999;
     font-weight: 400;
     line-height: 16px;
@@ -788,6 +831,173 @@ header {
     padding: 0px;
 }
 
+.volver{
+    cursor: pointer;
+    font-style: italic;
+    color: #DDD;
+    padding-right: 14px;
+}
+
+.volver:hover{color: #BBB;}
+
+.circulo{
+    width: 120px;
+    height: 120px;
+    margin: 0px auto 0px auto;
+    line-height: 120px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 30px;
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    border-radius: 60px;
+    background-color: #999;
+    color: #FFF;
+}
+
+.circulo .semana{
+    font-size: 14px;
+    line-height: 15px;
+    color: #CCC;
+    padding: 15px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+.circulo .eldia{
+    font-size: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    color:#851A1F;
+    padding: 0px;
+    margin: 6px 0px 3px 0px;
+}
+
+.circulo .mesanio{
+    font-size: 10px;
+    line-height: 9px;
+    color: #fff;
+    padding: 0px;
+    margin: 12px 0px 3px 0px;
+}
+
+.seccion_header{
+    border: 0px solid #999;
+    font-size: 24px;
+    color: #DDD;
+    font-style: italic;
+    padding: 0px 0px 8px 8px;
+    border-bottom: 1px solid #EEE;
+    margin: 30px 0px 30px 0px;
+}
+
+.votacion{
+    margin-bottom: 40px;
+}
+
+.votacion .titulo{
+    border-bottom: 1px solid #EEE;
+    font-size: 18px;
+    color:#666;
+    padding-bottom:6px;
+    margin: 0px 0px 3px 0px;
+}
+
+.votacion .descripcion{
+    font-size: 14px;
+    color:#888;
+    margin: 0px 0px 3px 0px;
+}
+
+.votacion .grafica{
+    color: #DDD;
+    background-image: url(http://img.cdn.tl/loading2.gif);
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 140px;
+    text-align: center;
+}
+
+.votacion .grafica i{
+    font-size: 40px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+svg{
+    background-color: #FFF;
+}
+
+.vermas{
+    margin: 10px 0px 0px 0px;
+    font-size: 12px;
+    cursor: pointer;
+    font-style: italic;
+    color: #CCC;
+}
+
+.vermas:hover{color: #888;}
+
+.detalles{
+    background-color: #EEE;
+    padding: 10px 0px 10px 20px;
+}
+
+.ordenacion{
+    border: 0px solid #999;
+    font-size: 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.ordenacion .orden{
+    border: 0px solid #999;
+    cursor: pointer;
+    color: #888;
+    padding-left: 12px;
+}
+
+.ordenacion .orden.seleccionado{
+    color:#000;
+}
+
+
+.desglose_wrapper{
+    
+}
+
+.desglose_wrapper .item{
+    font-size: 12px;
+    float: left;
+    margin: 0px 10px 0px 0px;
+    cursor: pointer;
+/*    width: 250px;*/
+}
+
+.desglose_wrapper .item.a_si{color: #375A99;}
+.desglose_wrapper .item.b_no{color: #851A1F;}
+.desglose_wrapper .item.c_abst{color: #999;}
+.desglose_wrapper .item.d_novo{color: #DDD;}
+
+#cargando{
+    height: 100px;
+    width: 90%;
+    margin: 10px auto;
+    background-image: url(http://img.cdn.tl/loading2.gif);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.havotado {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.havotado.favor{color: #375A99;}
+.havotado.contra{color: #851A1F;}
+.havotado.abstencion{color: #999;}
+.havotado.novota{color: #DDD;}
 
 /* Footer
 -------------------------------------------------- */
@@ -795,8 +1005,11 @@ header {
 
 #footer {
     height:100px;
-	background-color: #252528;
-	color: #fff;	
+    background-color: #252528;
+    color: #fff;    
+}
+#footer a{
+    color: #686868;   
 }
 #footer .footer_header {
 	color: rgb(196, 196, 196);
