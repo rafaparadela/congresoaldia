@@ -16,5 +16,8 @@ Recursos
 * [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
 * [Lato Google Webfont](http://www.google.com/fonts/specimen/Lato)
 * [Animate.css](http://daneden.me/animate/)
+<<<<<<< HEAD
 * [Animate.css](http://daneden.me/animate/)
 * [morris.js](http://www.oesmith.co.uk/morris.js/)
+=======
+>>>>>>> 2f4e95a2866487a51639cc8aa5e83eb970c828b4
