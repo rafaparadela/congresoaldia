@@ -586,7 +586,7 @@ function rellenaDatosVotacion (id, diputado_id) {
         titulo.text(data.title);
         descripcion.text(data.record_text);
         
-        var favor=parseInt(data.attendee);
+        var favor=parseInt(data.for_votes);
         var contra=parseInt(data.against_votes);
         var abstenciones=parseInt(data.abstains);
         var total=favor+contra+abstenciones;
