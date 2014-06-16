@@ -321,7 +321,7 @@ textarea {
 #loading{
     display: none;
     background-color:#FFF;
-    background-image: url(http://img.cdn.tl/loading2.gif);
+    background-image: url(http://f.cl.ly/items/0o3y1w1B040X370x2M1U/loading2.gif);
     background-position: center 40px;
     background-repeat: no-repeat;
     width: 200px;
@@ -621,7 +621,7 @@ header {
     background-color: #FFF;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url(http://img.cdn.tl/loading2.gif);
+    background-image: url(http://f.cl.ly/items/0o3y1w1B040X370x2M1U/loading2.gif);
     -webkit-border-radius: 66px;
     -moz-border-radius: 66px;
     border-radius: 66px;
@@ -910,7 +910,7 @@ header {
 
 .votacion .grafica{
     color: #DDD;
-    background-image: url(http://img.cdn.tl/loading2.gif);
+    background-image: url(http://f.cl.ly/items/0o3y1w1B040X370x2M1U/loading2.gif);
     background-position: center center;
     background-repeat: no-repeat;
     height: 140px;
@@ -983,7 +983,7 @@ svg{
     height: 100px;
     width: 90%;
     margin: 10px auto;
-    background-image: url(http://img.cdn.tl/loading2.gif);
+    background-image: url(http://f.cl.ly/items/0o3y1w1B040X370x2M1U/loading2.gif);
     background-position: center center;
     background-repeat: no-repeat;
 }

@@ -102,7 +102,7 @@ function cargaVistaPortada () {
             
             if(diputados.length==0){
                 
-                diputadosRequest(api_url+'/api/v1/group/', function(){
+                diputadosRequest(api_url+'/api/v1/groupmember/', function(){
                     if(ultimas_sesiones.length==0){
                         sesionesRequest(api_url+'/api/v1/session/?limit=1000&order_by=-date');
                     }
@@ -157,7 +157,7 @@ function muestraPartidos () {
     });
    
     if(diputados.length==0){
-        diputadosRequest(api_url+'/api/v1/group/', function(){
+        diputadosRequest(api_url+'/api/v1/groupmember/', function(){
             muestraDiputados();
         });
     }
@@ -170,19 +170,16 @@ function diputadosRequest (url, callback) {
     
     $.getJSON(url, function(data) {
       
-        $.each(data.objects, function(index, partido) {
+        $.each(data.objects, function(index, diputado) {
             
-            $.each(partido.members, function(index, diputado) {
-                diputados.push({    'acronimo':partido.acronym.trim(), 
-                                    'partido':getParty(diputado.party), 
-                                    'id':diputado.id, 
+			diputados.push({ 'partido':getParty(diputado.party), 
+                                    'id':diputado.member.id, 
                                     'nombre':diputado.member.name+' '+diputado.member.second_name,
                                     'email':diputado.member.email,
                                     'twitter':diputado.member.twitter,
                                     'web':diputado.member.web,
                                     'avatar':diputado.member.avatar
                                 });
-            });
             
         });
       
@@ -256,6 +253,14 @@ function activaIsotope () {
     $('#loading').fadeOut(400);
 }
 
+function partidosGeneral() {
+    if(partidos.length==0){
+        partidosRequest(api_url+'/api/v1/party/?limit=1000', function(){
+            partidos = _(partidos).sortBy("name");
+        });
+    }
+}
+
 
 //DIPUTADO
 
@@ -263,11 +268,12 @@ function cargaVistaDiputadoId () {
     
     $('.menuoption.diputados').addClass('active');
     if(diputados.length==0){
-        diputadosRequest(api_url+'/api/v1/group/', function(){
+        diputadosRequest(api_url+'/api/v1/groupmember/', function(){
             muestraDatosDiputado();
         });
     }
     else muestraDatosDiputado();
+	partidosGeneral();
 }
 
 function muestraDatosDiputado () {
@@ -376,6 +382,7 @@ function cargaVistaSesiones () {
         });
     }
     else muestraUltimasSesiones();
+	partidosGeneral();
 }
 
 function sesionesRequest (url, callback) {
@@ -466,7 +473,7 @@ function cargaVistaSesionId () {
         });
     }
     else muestraDatosSesion();
-    
+    partidosGeneral();
 }
 
 function muestraDatosSesion () {
@@ -484,7 +491,7 @@ function muestraDatosSesion () {
             
             //SI no tenemos diputados los buscamos
             if(diputados.length==0){
-                diputadosRequest(api_url+'/api/v1/group/', function(){
+                diputadosRequest(api_url+'/api/v1/groupmember/', function(){
                     muestraDatosGeneralesSesion();
                 });
             }
@@ -620,7 +627,7 @@ function rellenaDatosVotacion (id, diputado_id) {
             
             var ordenacion=$('<div></div>').attr({'id':'ordenacion'+id, 'class':'ordenacion'}).html('Ordenar por: '); detalles.append(ordenacion);
                 var por_votacion=$('<span></span>').attr({'class':'orden votacion'}).text('   Votación   '); ordenacion.append(por_votacion);
-                var por_grupo=$('<span></span>').attr({'class':'orden grupo'}).text('   Grupos parlamentarios   '); ordenacion.append(por_grupo);
+                var por_partido=$('<span></span>').attr({'class':'orden partido'}).text('   Partido   '); ordenacion.append(por_partido);
                 
                 
             
@@ -633,8 +640,9 @@ function rellenaDatosVotacion (id, diputado_id) {
                     var diputado = _.where(diputados, {"id":parseInt(miembro) });
                     if(diputado.length>0){
                         diputado=diputado[0];
-                        var grupo=getGrupo(diputado.acronimo);
-                        var item=$('<div></div>').attr({'class':'item '+eleccion, 'data-votacion':eleccion, 'data-grupo':grupo }).text(diputado.nombre.substring(0,35)+' ['+diputado.acronimo+']'); desglose_wrapper.append(item);
+                        //var grupo=getGrupo(diputado.acronimo);
+						var partidoName=getPartyNombre(diputado.partido);
+                        var item=$('<div></div>').attr({'class':'item '+eleccion, 'data-votacion':eleccion, 'data-partido':partidoName }).text(diputado.nombre.substring(0,35)+' ['+partidoName+']'); desglose_wrapper.append(item);
                         item.click(function(){
                             window.location.hash = 'diputado/'+diputado.id;
                             e.preventDefault();
@@ -663,7 +671,7 @@ function muestraDesgloseVotacion (elemento) {
     var detalles=prota.siblings('.detalles');
     var ordenacion=detalles.find('.ordenacion');
     var por_votacion=ordenacion.find('.orden.votacion');
-    var por_grupo=ordenacion.find('.orden.grupo');
+    var por_partido=ordenacion.find('.orden.partido');
     
     
     $('.detalles.activo').hide();
@@ -683,23 +691,23 @@ function muestraDesgloseVotacion (elemento) {
                     votacion : function ( $elem ) {
                       return $elem.attr('data-votacion');
                     },
-                    grupo : function ( $elem ) {
-                      return $elem.attr('data-grupo');
+                    partido : function ( $elem ) {
+                      return $elem.attr('data-partido');
                     }
                   }
             });
         
             por_votacion.click(function(){
-                por_grupo.removeClass('seleccionado');
+                por_partido.removeClass('seleccionado');
                 por_votacion.addClass('seleccionado');
                 $('#desglose'+id).isotope({ sortBy : 'votacion' });
                   return false;
             });
         
-            por_grupo.click(function(){
+            por_partido.click(function(){
                 por_votacion.removeClass('seleccionado');
-                por_grupo.addClass('seleccionado');
-                $('#desglose'+id).isotope({ sortBy : 'grupo' });
+                por_partido.addClass('seleccionado');
+                $('#desglose'+id).isotope({ sortBy : 'partido' });
                   return false;
             });
         
@@ -752,6 +760,13 @@ function getParty (cadena) {
     return cadena.replace('/api/v1/party/','').replace('/','');
 }
 
+function getPartyNombre (id) {
+	var partido = _.where(partidos, {"id":parseInt(id) });
+	if(partido.length>0) var name =  partido[0].name;
+	else var name = '';
+	return name;
+}
+
 function getMember (cadena) {
     return cadena.replace('/api/v1/member/','').replace('/','');
 }
@@ -780,7 +795,8 @@ function getEleccion (cadena) {
 }
 
 function getGrupo (cadena) {
-    return cadena.replace(' ','').replace('-','').toLowerCase();
+	return cadena;
+    // return cadena.replace(' ','').replace('-','').toLowerCase();
 }
 
 

@@ -1,7 +1,7 @@
 congresoaldia.es
 =============
 
- [congresoaldia.es](http://congresoaldia.es) es una web full client-side que muestra ordenadamente los datos recolectados por [El Proyecto Colibrí](https://proyectocolibri.com).
+ [congresoaldia.es](http://congresoaldia.es) es una web full client-side que muestra ordenadamente los datos recolectados por [El Proyecto Colibrí](https://proyectocolibri.es).
 
 
 Recursos
